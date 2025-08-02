@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Apps & Websites Showcase</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .trending-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .trending-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .trending-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .trending-card:hover .card-header img {
+            transform: scale(1.05);
+        }
+        
+        .rank-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-body h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .card-body p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .trend-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .trend-up {
+            color: #4caf50;
+        }
+        
+        .trend-down {
+            color: #f44336;
+        }
+        
+        .trend-neutral {
+            color: #ff9800;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .trending-trainer {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trainer-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .trainer-header h2 {
+            color: var(--secondary-color);
+        }
+        
+        .trainer-trend {
+            margin-left: auto;
+            background-color: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .trainer-content {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .trainer-video {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .trainer-video iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+        }
+        
+        .trainer-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .trainer-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .trainer-content {
+                flex-direction: column;
+            }
+            
+            .trending-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Top 10 Trending Apps & Websites</h1>
+            <p>Discover the hottest digital products and learn how to use them</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="apps">Trending Apps</div>
+            <div class="tab" data-tab="websites">Trending Websites</div>
+            <div class="tab" data-tab="trends">Trend Analysis</div>
+        </div>
+        
+        <div class="tab-content active" id="apps">
+            <div class="trending-container" id="apps-container">
+                <!-- Apps will be loaded here by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="websites">
+            <div class="trending-container" id="websites-container">
+                <!-- Websites will be loaded here by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="trends">
+            <div class="trending-trainer">
+                <div class="trainer-header">
+                    <h2>Trending Trainer of the Week</h2>
+                    <div class="trainer-trend">
+                        <span>Next Session: Tomorrow 4 PM</span>
+                    </div>
+                </div>
+                <div class="trainer-content">
+                    <div class="trainer-video">
+                        <iframe src="https://www.youtube.com/embed/9No-FiEInLA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Mastering Viral Apps in 2023</h3>
+                        <p>Join our expert trainer Sarah Johnson as she breaks down the hottest apps of the week and shows you how to leverage them for personal and professional growth.</p>
+                        <p>In this session, you'll learn:</p>
+                        <ul>
+                            <li>Key features of trending apps</li>
+                            <li>Hidden functionalities most users miss</li>
+                            <li>How to integrate multiple apps for maximum productivity</li>
+                            <li>Upcoming trends in the app ecosystem</li>
+                        </ul>
+                        <button class="btn btn-primary" style="margin-top: 15px;">Register for Live Session</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trending-container">
+                <div class="trending-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Trend Analysis">
+                        <div class="rank-badge">1</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Weekly Trend Report</h3>
+                        <p>Comprehensive analysis of what's trending and why across apps and websites.</p>
+                        <div class="trend-indicator">
+                            <span class="trend-up">↑ 24% this week</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="#" class="btn btn-primary">View Report</a>
+                            <a href="#" class="btn btn-outline">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trending-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Tutorial">
+                        <div class="rank-badge">2</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Video Tutorials</h3>
+                        <p>Step-by-step guides for all trending apps and websites.</p>
+                        <div class="trend-indicator">
+                            <span class="trend-up">↑ 18% this week</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="#" class="btn btn-primary">Watch Now</a>
+                            <a href="#" class="btn btn-outline">Browse All</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trending-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Comparison">
+                        <div class="rank-badge">3</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>App Comparisons</h3>
+                        <p>See how competing apps stack up against each other.</p>
+                        <div class="trend-indicator">
+                            <span class="trend-neutral">→ Steady</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="#" class="btn btn-primary">Compare Now</a>
+                            <a href="#" class="btn btn-outline">Request Analysis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for trending apps
+        const trendingApps = [
+            {
+                id: 1,
+                name: "Threads",
+                description: "Meta's Twitter competitor that's taking social media by storm.",
+                image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                trend: "up",
+                trendValue: "42%",
+                tutorialLink: "https://www.youtube.com/embed/example1",
+                websiteLink: "https://threads.net"
+            },
+            {
+                id: 2,
+                name: "ChatGPT Mobile",
+                description: "The official mobile app for OpenAI's revolutionary AI chatbot.",
+                image: "https://images.unsplash.com/photo-1655720828013-97bda5d0e5e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                trend: "up",
+                trendValue: "35%",
+                tutorialLink: "https://www.youtube.com/embed/example2",
+                websiteLink: "https://openai.com/blog/chatgpt"
+            },
+            {
+                id: 3,
+                name: "BeReal",
+                description: "The authentic social media app that keeps it real with daily unfiltered posts.",
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                trend: "down",
+                trendValue: "12%",
+                tutorialLink: "https://www.youtube.com/embed/example3",
+                websiteLink: "https://bereal.com"
+            },
+            {
+                id: 4,
+                name: "TikTok Shop",
+                description: "TikTok's integrated shopping feature that's changing social commerce.",
+                image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                trend: "up",
+                trendValue: "58%",
+                tutorialLink: "https://www.youtube.com/embed/example4",
+                websiteLink: "https://www.tiktok.com/business/en"
+            },
+            {
+                id: 5,
+                name: "CapCut",
+                description: "Powerful video editing app that's perfect for TikTok creators.",
+                image: "https://images.unsplash.com/photo-1574717024453-354a7a79d6cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                trend: "up",
+                trendValue: "27%",
+                tutorialLink: "https://www.youtube.com/embed/example5",
+                websiteLink: "https://www.capcut.com"
+            }
+        ];
+
+        // Sample data for trending websites
+        const trendingWebsites = [
+            {
+                id: 1,
+                name: "Midjourney",
+                description: "AI-powered image generation that's revolutionizing digital art.",
+                image: "https://images.unsplash.com/photo-1677442135136-760c813a743e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                trend: "up",
+                trendValue: "63%",
+                tutorialLink: "https://www.youtube.com/embed/example6",
+                websiteLink: "https://www.midjourney.com"
+            },
+            {
+                id: 2,
+                name: "Notion AI",
+                description: "Supercharged productivity with AI integrated into Notion workspace.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                trend: "up",
+                trendValue: "45%",
+                tutorialLink: "https://www.youtube.com/embed/example7",
+                websiteLink: "https://www.notion.so/product/ai"
+            },
+            {
+                id: 3,
+                name: "Character.AI",
+                description: "Chat with AI versions of celebrities, historical figures, or your own creations.",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1085&q=80",
+                trend: "up",
+                trendValue: "78%",
+                tutorialLink: "https://www.youtube.com/embed/example8",
+                websiteLink: "https://beta.character.ai"
+            },
+            {
+                id: 4,
+                name: "Perplexity AI",
+                description: "AI-powered search engine that provides detailed, cited answers.",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1085&q=80",
+                trend: "up",
+                trendValue: "52%",
+                tutorialLink: "https://www.youtube.com/embed/example9",
+                websiteLink: "https://www.perplexity.ai"
+            },
+            {
+                id: 5,
+                name: "Leonardo.AI",
+                description: "Create stunning AI art with this powerful image generation tool.",
+                image: "https://images.unsplash.com/photo-1677442135136-760c813a743e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                trend: "up",
+                trendValue: "89%",
+                tutorialLink: "https://www.youtube.com/embed/example10",
+                websiteLink: "https://leonardo.ai"
+            }
+        ];
+
+        // Function to render apps
+        function renderApps() {
+            const container = document.getElementById('apps-container');
+            container.innerHTML = '';
+            
+            trendingApps.forEach((app, index) => {
+                const trendClass = app.trend === 'up' ? 'trend-up' : app.trend === 'down' ? 'trend-down' : 'trend-neutral';
+                const trendSymbol = app.trend === 'up' ? '↑' : app.trend === 'down' ? '↓' : '→';
+                
+                const card = document.createElement('div');
+                card.className = 'trending-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${app.image}" alt="${app.name}">
+                        <div class="rank-badge">${index + 1}</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>${app.name}</h3>
+                        <p>${app.description}</p>
+                        <div class="trend-indicator">
+                            <span class="${trendClass}">${trendSymbol} ${app.trendValue} this week</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="${app.tutorialLink}" class="btn btn-primary">Watch Tutorial</a>
+                            <a href="${app.websiteLink}" target="_blank" class="btn btn-outline">Visit Website</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Function to render websites
+        function renderWebsites() {
+            const container = document.getElementById('websites-container');
+            container.innerHTML = '';
+            
+            trendingWebsites.forEach((site, index) => {
+                const trendClass = site.trend === 'up' ? 'trend-up' : site.trend === 'down' ? 'trend-down' : 'trend-neutral';
+                const trendSymbol = site.trend === 'up' ? '↑' : site.trend === 'down' ? '↓' : '→';
+                
+                const card = document.createElement('div');
+                card.className = 'trending-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${site.image}" alt="${site.name}">
+                        <div class="rank-badge">${index + 1}</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>${site.name}</h3>
+                        <p>${site.description}</p>
+                        <div class="trend-indicator">
+                            <span class="${trendClass}">${trendSymbol} ${site.trendValue} this week</span>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="${site.tutorialLink}" class="btn btn-primary">Watch Tutorial</a>
+                            <a href="${site.websiteLink}" target="_blank" class="btn btn-outline">Visit Website</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            renderApps();
+            renderWebsites();
+            
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
