@@ -2,7 +2,7 @@
 
 from flask import Flask
 
-app = Flask(__s__)  # Yeh 'app' object Gunicorn ko chahiye hota hai
+app = Flask(__app__)  # Yeh 'app' object Gunicorn ko chahiye hota hai
 
 @app.route("/")
 def home():
