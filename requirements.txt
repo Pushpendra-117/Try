@@ -1,3 +1,5 @@
+from T.wsgi import application as app
+
 asgiref==3.8.1
 blinker==1.9.0
 click==8.2.1
