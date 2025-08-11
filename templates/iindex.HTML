@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Web Directory</title>
+    <style>
+        /* Old-style CSS */
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        header {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border-bottom: 3px solid #004488;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        nav {
+            background-color: #333;
+            padding: 5px 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        nav li {
+            padding: 5px 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        nav a:hover {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .website-card {
+            width: 30%;
+            margin: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .website-card h3 {
+            color: #0066cc;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 5px;
+        }
+        
+        .website-card a {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 5px 10px;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        
+        .website-card a:hover {
+            background-color: #004488;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+        
+        /* Old-school divider */
+        .divider {
+            border-top: 1px dashed #999;
+            margin: 20px 0;
+        }
+        
+        /* Retro scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Feedback section */
+        .feedback {
+            background-color: #ffffcc;
+            border: 1px dashed #ffcc00;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .feedback textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .feedback button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vintage Web Directory</h1>
+            <p>Your gateway to trending websites with classic charm</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#websites">Websites</a></li>
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#ped">PED Resources</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content" id="websites">
+            <h2>Trending Websites</h2>
+            <div class="divider"></div>
+            
+            <div class="website-card">
+                <h3>Hacker News</h3>
+                <p>A social news website focusing on computer science and entrepreneurship with a minimalist design.</p>
+                <p><strong>Category:</strong> Technology News</p>
+                <a href="https://news.ycombinator.com/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>Product Hunt</h3>
+                <p>A platform to share and discover new products with a community of early adopters.</p>
+                <p><strong>Category:</strong> Product Discovery</p>
+                <a href="https://www.producthunt.com/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>GitHub</h3>
+                <p>Web-based hosting service for version control using Git, essential for software development.</p>
+                <p><strong>Category:</strong> Development</p>
+                <a href="https://github.com/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>Medium</h3>
+                <p>Online publishing platform with a clean interface for writers and readers.</p>
+                <p><strong>Category:</strong> Blogging</p>
+                <a href="https://medium.com/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>Reddit</h3>
+                <p>A network of communities based on people's interests with a simple discussion format.</p>
+                <p><strong>Category:</strong> Social Media</p>
+                <a href="https://www.reddit.com/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>Stack Overflow</h3>
+                <p>Question and answer site for professional and enthusiast programmers.</p>
+                <p><strong>Category:</strong> Programming Q&A</p>
+                <a href="https://stackoverflow.com/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+        
+        <div class="content" id="apps">
+            <h2>Popular Apps</h2>
+            <div class="divider"></div>
+            
+            <div class="website-card">
+                <h3>Notion</h3>
+                <p>All-in-one workspace for notes, tasks, wikis, and databases with powerful customization.</p>
+                <p><strong>Download:</strong> <a href="https://www.notion.so/desktop" target="_blank">Desktop App</a> | <a href="https://apps.apple.com/us/app/notion/id1232780281" target="_blank">iOS</a> | <a href="https://play.google.com/store/apps/details?id=notion.id" target="_blank">Android</a></p>
+            </div>
+            
+            <div class="website-card">
+                <h3>Discord</h3>
+                <p>Voice, video and text communication service with communities and private chats.</p>
+                <p><strong>Download:</strong> <a href="https://discord.com/download" target="_blank">Desktop App</a> | <a href="https://apps.apple.com/us/app/discord/id985746746" target="_blank">iOS</a> | <a href="https://play.google.com/store/apps/details?id=com.discord" target="_blank">Android</a></p>
+            </div>
+            
+            <div class="website-card">
+                <h3>VS Code</h3>
+                <p>Lightweight but powerful source code editor from Microsoft with great extensions.</p>
+                <p><strong>Download:</strong> <a href="https://code.visualstudio.com/download" target="_blank">All Platforms</a></p>
+            </div>
+        </div>
+        
+        <div class="content" id="ped">
+            <h2>PED Resources</h2>
+            <div class="divider"></div>
+            
+            <div class="website-card">
+                <h3>Khan Academy</h3>
+                <p>Free online courses, lessons and practice on various subjects including programming.</p>
+                <a href="https://www.khanacademy.org/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>Coursera</h3>
+                <p>Online learning platform offering courses from top universities and companies.</p>
+                <a href="https://www.coursera.org/" target="_blank">Visit Website</a>
+            </div>
+            
+            <div class="website-card">
+                <h3>edX</h3>
+                <p>Massive open online course provider created by Harvard and MIT.</p>
+                <a href="https://www.edx.org/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+        
+        <div class="content" id="feedback">
+            <h2>Your Feedback</h2>
+            <div class="divider"></div>
+            
+            <div class="feedback">
+                <p>We value your opinion! Please share your thoughts about this directory:</p>
+                <textarea placeholder="Type your feedback here..."></textarea>
+                <button onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Vintage Web Directory | All links are external and we are not affiliated with any listed websites</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript for feedback submission
+        function submitFeedback() {
+            const feedbackText = document.querySelector('.feedback textarea').value;
+            if (feedbackText.trim() === '') {
+                alert('Please enter your feedback before submitting.');
+                return;
+            }
+            
+            // In a real app, you would send this to a server
+            alert('Thank you for your feedback! We appreciate your input.');
+            document.querySelector('.feedback textarea').value = '';
+            
+            // Log to console for demonstration
+            console.log('User feedback:', feedbackText);
+        }
+        
+        // Simple navigation highlight
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('nav a').forEach(l => l.style.color = 'white');
+                this.style.color = '#ffcc00';
+            });
+        });
+    </script>
+</body>
+</html>
